@@ -12,7 +12,7 @@ This project was completed using starter code from gitHub by username potential-
 
 By starting with a basic skeleton, you then add in javascript to allow for the creation of a new README file. 
 
-Here goes my screencapture
+[Walkthrough](<iframe src="https://drive.google.com/file/d/1Rn9HcfU9eAQhdFNaE447PJ0l2q6YsHku/preview" width="640" height="480"></iframe>)
 
 ## Credits
 
