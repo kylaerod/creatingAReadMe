@@ -19,7 +19,7 @@ I have to bake the cake. First, eggs and sugar, then butter.
 ## Usage
 Put all ingredients in bowl and mix.
 
-![Cake](<insert screenshot here>)
+![Cake](cake.jpg)
 
 ## Credits
 My mom helped me bake the cake. Thanks mom!
