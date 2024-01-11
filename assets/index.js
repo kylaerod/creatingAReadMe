@@ -1,9 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const {generateMarkdown} = require('./generateMarkdown'); 
+const generateMarkdown = require('./generateMarkdown'); 
 
 // Function to write README file
-function writeToFile(projectTitle, description, installation, usage, credits, license, altText) {
+function writeToFile(projectTitle, description, installation, usage, credits, license, altText, email, githubUsername, tests, questions) {
   const content = generateMarkdown({
     projectTitle,
     description,
@@ -12,6 +12,10 @@ function writeToFile(projectTitle, description, installation, usage, credits, li
     credits,
     license,
     altText,
+    email, 
+    githubUsername,
+    tests, 
+    questions,
   });
 
   fs.writeFile('README.md', content, (err) => {
@@ -22,6 +26,7 @@ function writeToFile(projectTitle, description, installation, usage, credits, li
     }
   });
 }
+
 
 // Function to initialize app
 function init() {
@@ -63,6 +68,9 @@ function init() {
         type: 'input',
         name: 'credits',
         message: 'List your collaborators, if any, with links to their GitHub profiles. If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section. If you followed tutorials, include links to those here as well.',
+        validate: function (input) {
+          return input !== '' ? true : 'Credits cannot be empty.';
+        },
       },
       {
         type: 'list',
@@ -75,19 +83,49 @@ function init() {
         name: 'altText',
         message: 'Write some Alt Text for your screenshots.',
       },
-    ])
-    .then((answers) => {
-      writeToFile(
-        answers.projectTitle,
-        answers.description,
-        answers.installation,
-        answers.usage,
-        answers.credits,
-        answers.license,
-        answers.altText
-      );
-    });
-}
-
-// Function call to initialize app
-init();
+      {
+        type: 'input',
+        name: 'tests',
+        message: 'Please include any tests for your project.',
+        },
+        {
+        type: 'input',
+        name: 'questions',
+        message: 'Enter any questions you would like to add to your README.',
+        },
+        {
+          type: 'input',
+          name: 'githubUsername',
+          message: 'Please enter your GitHub username.',
+          validate: function (input) {
+            return input !== '' ? true : 'Username cannot be empty.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'email',
+          message: 'Please enter email to add to README.',
+          validate: function (input) {
+            return input !== '' ? true : 'Email cannot be empty.';
+          },
+        },
+      ])
+      .then((answers) => {
+        writeToFile(
+          answers.projectTitle,
+          answers.description,
+          answers.installation,
+          answers.usage,
+          answers.credits,
+          answers.license,
+          answers.altText,
+          answers.email, 
+          answers.githubUsername,
+          answers.tests,
+          answers.questions
+        );
+      });
+  }
+  
+  // Function call to initialize app
+  init();
