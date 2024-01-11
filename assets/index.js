@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { generateMarkdown } = require('./generateMarkdown'); 
+const {generateMarkdown} = require('./generateMarkdown'); 
 
 // Function to write README file
 function writeToFile(projectTitle, description, installation, usage, credits, license, altText) {
